@@ -1,0 +1,10 @@
+.mid-nav{
+    background-color: darkslategray;
+    padding: 10px;
+}
+
+.mid-nav-text{
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
