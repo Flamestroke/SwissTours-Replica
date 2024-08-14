@@ -22,15 +22,15 @@ session_start();
                 <div class="collapse navbar-collapse w-100" id="navcol-1">
                     <ul class="navbar-nav mr-auto mb-2 mb-lg-0 flex-grow-1 mt-4">
                         <li class="nav-item"><a class="nav-link active" href="index.php">Flights</a></li>
-                        <li class="nav-item"><a class="nav-link" href="features.php">Hotels</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.php">Apartments</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.php">Packages</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.php">Swiss Travel Pass</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.php">European Rail</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.php">Attractions</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about-us.php">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.php">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about-us.php">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Hotels</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Apartments</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Packages</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Swiss Travel Pass</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">European Rail</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Attractions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Blog</a></li>
                         <?php
                         if (isset($_SESSION['userId']) && $_SESSION['userId'] == true) {
                             echo '<li class="nav-item"><a class="nav-link" href="logout.php">
