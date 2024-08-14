@@ -1,34 +1,37 @@
 <?php ?>
 
-<!-- if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true) {
-$loggedin = true;
-} else {
-$loggedin = false;
-}
-echo ' -->
-
-
-<nav class="navbar navbar-expand-lg fixed-top bg-body clean-navbar navbar-light">
-    <a class="navbar-brand logo" href="index.php">Brand</a>
-    <div class="search-container">
-        <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+<header class="nav-header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="w-100 flex-column align-items-start">
+                <div class="d-flex justify-content-between w-100">
+                    <a class="navbar-brand logo" href="index.php"><img src="https://www.swisstours.com/images/logo.svg" alt=""></a>
+                    <div>
+                        <!-- <form action="/action_page.php"> -->
+                        <div class="headerSearch-wrapper me-4">
+                            <div class="headerSearch-inner">
+                                <input type="text" placeholder="Search.." name="search">
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse w-100" id="navcol-1">
+                    <ul class="navbar-nav mr-auto mb-2 mb-lg-0 flex-grow-1 mt-4">
+                        <li class="nav-item"><a class="nav-link active" href="index.php">Flights</a></li>
+                        <li class="nav-item"><a class="nav-link" href="features.php">Hotels</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pricing.php">Apartments</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pricing.php">Packages</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pricing.php">Swiss Travel Pass</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pricing.php">European Rail</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pricing.php">Attractions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about-us.php">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pricing.php">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about-us.php">Blog</a></li>  
+                        <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
-    <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="features.php">Features</a></li>
-                <li class="nav-item"><a class="nav-link" href="pricing.php">Pricing</a></li>
-                <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact-us.php">Contact Us</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-<!-- '; -->
+</header>

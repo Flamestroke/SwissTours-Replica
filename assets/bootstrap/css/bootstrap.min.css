@@ -99,7 +99,7 @@
   --bs-tertiary-bg-rgb: 248, 249, 250;
   --bs-heading-color: inherit;
   --bs-link-color: #0d6efd;
-  --bs-link-color-rgb: 13, 110, 253;
+  --bs-link-color-rgb: rgb(204, 0, 0);
   --bs-link-decoration: underline;
   --bs-link-hover-color: #0a58ca;
   --bs-link-hover-color-rgb: 10, 88, 202;
@@ -349,7 +349,7 @@ sup {
   top: -0.5em;
 }
 a {
-  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  color: rgb(204, 0, 0);
   text-decoration: underline;
 }
 a:hover {
@@ -2997,19 +2997,19 @@ fieldset:disabled .btn {
 }
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #0d6efd;
-  --bs-btn-border-color: #0d6efd;
+  --bs-btn-bg: rgb(204, 0, 0);
+  --bs-btn-border-color: rgb(204, 0, 0);
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #0b5ed7;
-  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-hover-bg: #b30404;
+  --bs-btn-hover-border-color: #b30404;
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #0a58ca;
-  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-bg: rgb(204, 0, 0);
+  --bs-btn-active-border-color: rgb(204, 0, 0);
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #0d6efd;
-  --bs-btn-disabled-border-color: #0d6efd;
+  --bs-btn-disabled-bg: rgb(204, 0, 0);
+  --bs-btn-disabled-border-color: rgb(204, 0, 0);
 }
 .btn-secondary {
   --bs-btn-color: #fff;
@@ -6036,17 +6036,20 @@ fieldset:disabled .btn {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   display: inline-block;
+  position: absolute; 
   width: 2rem;
   height: 2rem;
+  z-index: 999;
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: 100% 100%;
 }
 .carousel-control-prev-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+  transform: rotate(180deg);
+  background-image: url("https://img.icons8.com/?size=100&id=11759&format=png&color=ffffff");
 }
 .carousel-control-next-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  background-image: url("https://img.icons8.com/?size=100&id=11759&format=png&color=ffffff");
 }
 .carousel-indicators {
   position: absolute;
@@ -8386,7 +8389,7 @@ fieldset:disabled .btn {
 }
 .text-info {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important;
+  color: rgb(204, 0, 0) !important;
 }
 .text-warning {
   --bs-text-opacity: 1;
@@ -12402,7 +12405,7 @@ body {
 .clean-block.clean-form form {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity));
-  border-top: 2px solid #5ea4f3;
+  border-top: 2px solid rgb(204, 0, 0);
   max-width: 500px;
   margin: auto;
   padding: 40px;

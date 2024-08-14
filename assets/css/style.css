@@ -1,10 +1,459 @@
-.mid-nav{
-    background-color: darkslategray;
-    padding: 10px;
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
 }
 
-.mid-nav-text{
-    color: white;
-    text-align: center;
-    text-decoration: none;
+.text1 {
+  color: #303030;
+  font-style: normal;
+  font-size: 30px;
+}
+.text1_border {
+  width: 100%;
+  max-width: 130px;
+  display: block;
+  margin: 0 auto;
+  border: 1.5px solid #cc0000;
+  background: #cc0000;
+}
+.nav-header {
+  position: fixed;
+  width: 100%;
+  padding-top: 0;
+  border-bottom: 0;
+  height: 9.937rem !important;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: #fff;
+}
+.nav-item {
+  flex-grow: 1;
+}
+
+.main-content {
+  padding-top: 0;
+  border-bottom: 0;
+  position: relative;
+  background: transparent;
+  padding-bottom: 50px;
+  z-index: 9;
+}
+
+.formrow {
+  position: relative;
+  padding-top: 80px;
+}
+
+.caro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+
+  display: block;
+  box-sizing: border-box;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.formouter {
+  padding: 20px 15px;
+  position: relative;
+  margin-right: auto;
+  margin-left: 50px;
+  color: #fff;
+  width: 100%;
+  max-width: 385px;
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.38) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: -1;
+}
+.formouter h2 {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.form {
+  padding: 20px 0;
+}
+
+select {
+  background-color: #fff;
+}
+select:hover {
+  background-color: #b30404;
+}
+optgroup {
+  background-color: #fff;
+}
+option {
+  background-color: #fff;
+  border: #fff;
+}
+
+input:focus {
+  outline: none;
+}
+
+.input_head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border: 0;
+  height: 37px;
+  font-size: 15px;
+  font-weight: normal;
+  z-index: 1;
+  margin-bottom: 0;
+}
+.mr_b10 {
+  margin-bottom: 10px;
+}
+.input {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  height: 37px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  z-index: 1;
+}
+.inputs {
+  border: 0;
+  height: 37px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  width: 100%;  
+}
+
+.ui-datepicker {
+  z-index: 999 !important;
+}
+
+.headerSearch-wrapper {
+  position: relative;
+  width: 18rem;
+  min-height: 2.8rem;
+  z-index: 99;
+}
+
+.headerSearch-inner {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #a3a3a3;
+  background-color: white;
+  border-radius: 1.4rem;
+  text-decoration: none;
+  top: 0;
+  left: 0;
+}
+.headerSearch-inner input {
+  border: 0;
+  background: url(https://www.swisstours.com/images/airline/search-icon.svg)
+    no-repeat transparent;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-size: auto;
+  padding: 0.75rem 3rem 0.75rem 1.5rem;
+  width: 100%;
+  background-size: 1rem 1rem;
+  background-position: calc(100% - 1rem) center;
+}
+
+.features {
+  padding-top: 20px;
+}
+.features p {
+  color: #303030;
+  margin: 0;
+  margin-left: 0px;
+  border-radius: 0px 20px 20px 0px;
+  padding: 3px 6px 3px 15px;
+  margin-left: -10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 19px;
+  z-index: 0;
+  display: inline-block;
+  width: auto;
+}
+.fas {
+  z-index: 1;
+  position: relative;
+}
+
+.mid-nav {
+  background: url(https://www.swisstours.com/images/Itinerary/d_texture.png)
+    #566d74;
+  text-align: center;
+  margin-bottom: 0;
+  display: block;
+  margin: auto;
+  transform: none;
+}
+.mid-nav li {
+  display: inline-block;
+  line-height: 45px;
+  margin: 0 10px;
+  padding: 0 10px;
+  position: relative;
+  color: #eee;
+}
+
+.mid-nav a {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.footerDark {
+  background-color: #222222;
+  margin-top: 9.375rem;
+}
+
+footer .lower .bot .footerDark-cr {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  color: rgba(255 255 255 / 50%);
+}
+
+.upper {
+  background-color: white;
+  box-shadow: 0px -0.5rem 1.75rem 0px #0000001a;
+  padding-top: 2.625rem;
+  padding-bottom: 2rem;
+  border-radius: 1.5rem;
+  margin-top: -115px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.upper h5 {
+  color: black;
+}
+.upper a {
+  color: black;
+  text-decoration: none;
+}
+.upper ul li {
+  font-size: 14px;
+  text-transform: capitalize;
+  color: #333;
+  list-style-type: none;
+  background: none;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+.upper ul {
+  display: block;
+  padding-left: 0;
+}
+
+.foothead {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #2d2e2e;
+  border-bottom: 0;
+  padding-bottom: 0px;
+  margin-bottom: 0.5rem;
+  margin-right: 0px;
+}
+
+.lower {
+  border-top: 1px solid #dedede;
+}
+
+.mid {
+  margin: 60px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(246 246 246 / 50%);
+  position: relative;
+  max-width: 80%;
+}
+
+.mid a {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+  position: absolute;
+  background: #222222;
+  padding: 0px 1.187rem;
+}
+
+.mid span {
+  margin-left: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid #fff;
+}
+
+.bot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #333;
+  font-size: 12px;
+}
+
+.bot a {
+  display: inline-block;
+  margin-left: 0px;
+  display: flex;
+  width: 2.125rem;
+  height: 2.125rem;
+  background: #ffffff80;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: ease-in 0.3s;
+  color: #333;
+}
+
+.bot .footsocial a:nth-child(2) {
+  margin: 0px 1.875rem;
+}
+
+.bot .footsocial a:hover {
+  background: #fff;
+}
+
+.bot .footsocial a i {
+  font-size: 1rem;
+  justify-content: center;
+  display: inline-block;
+}
+.bot i:last-child {
+  margin-right: 0;
+}
+
+.border-right {
+  border-right: 1px solid #d9d9d9;
+}
+
+.scrollstick {
+  padding-top: 40px;
+}
+
+.stickytitle {
+  position: fixed;
+  top: 115px;
+  width: 100%;
+  max-height: 85%;
+  z-index: 9;
+  border-bottom: 1px solid #888;
+  box-shadow: 0 0 6px #444;
+  animation: slide-down 0.3s;
+}
+
+.itinerary_package_grid-item {
+  padding: 0px 7px;
+  margin-bottom: 14px;
+}
+
+.itinerary_package_grid-item .itinerary_grid-item-box {
+  display: flex;
+  align-items: flex-end;
+}
+.package_grid_item-1 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(../img/scenery/image1.jpg);
+}
+.package_grid_item-2 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(../img/scenery/image4.jpg);
+}
+.package_grid_item-3 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(../img/scenery/image5.jpg);
+}
+.package_grid_item-4 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(../img/scenery/image6.jpg);
+}
+.package_grid_item-5 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(https://www.swisstours.com/images/Itinerary/excursion-bg.png);
+}
+.itinerary_package_grid-item a {
+  display: block;
+  min-height: 355px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 0 10px;
+}
+
+.itinerary_pacakge_grid-item-info {
+  padding-bottom: 20px;
+  padding-left: 10px;
+}
+
+.itinerary_package_grid_item-title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+.itinerary_package_grid_item-subtitle {
+  color: #fff;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  max-width: 550px;
+}
+
+.faq {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  padding-bottom: 50px;
+}
+
+.accordButton {
+  min-height: 40px;
+  font-size: 16px;
+  padding: 7px 7px 7px 60px;
+  position: relative;
+  cursor: pointer;
+}
+
+.accordAnswer {
+  padding: 0 15px 0 60px;
+  line-height: 24px;
+  float: left;
+  width: 100%;
 }
