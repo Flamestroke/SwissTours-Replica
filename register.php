@@ -1,7 +1,7 @@
 <?php
-session_start();
+// Logic
 
-$showAlert = false;
+session_start();
 $showError = false;
 
 if (isset($_POST['register_submit'])) {
@@ -61,6 +61,7 @@ if (isset($_POST['register_submit'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/swisslogo.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
@@ -74,15 +75,11 @@ if (isset($_POST['register_submit'])) {
 </head>
 
 <body>
-    <?php
-    require 'components/_nav.php'
-    ?>
-
+    <!-- Header -->
+    <?php require 'components/_nav.php' ?>
 
     <div class="main-content" id="itinerary_search">
         <div class="container-fluid" style="position: relative; padding-top: 110px; z-index: 9;">
-
-
             <div class="mt-5 container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-center align-items-md-center justify-content-lg-center justify-content-xl-center mt-5 mx-auto">
@@ -94,22 +91,34 @@ if (isset($_POST['register_submit'])) {
                                 <div class="bs-icon-lg bs-icon-circle bs-icon-primary bs-icon my-3">
                                 </div>
                                 <form method="post">
+
+                                    <!-- Username -->
                                     <div id="username" class="mb-3">
                                         <p class="d-flex" style="margin-bottom: 5px;">Username</p><input class="form-control" type="text" name="uname" id="uname" placeholder="Username" required>
                                     </div>
+
+                                    <!-- Email -->
                                     <div class="mb-3">
                                         <p class="text-start px-1" style="margin-bottom: 6px;">Email</p>
                                         <input class="form-control" type="email" name="email" id="email" placeholder="Email" autocomplete="off" required>
                                     </div>
+
+                                    <!-- Password -->
                                     <div id="password" class="mb-3">
                                         <p class="d-flex" style="margin-bottom: 4px;">Password</p><input class="form-control" type="password" name="pass" id="pass" placeholder="Password" required>
                                     </div>
+
+                                    <!-- C-Password -->
                                     <div id="cpassword" class="mb-3">
                                         <p class="d-flex" style="margin-bottom: 4px;">Confirm Password</p><input class="form-control" type="password" name="cpass" id="cpass" placeholder="Password" required>
                                     </div>
+
+                                    <!-- Register button -->
                                     <div class="mb-3">
                                         <button class="btn btn-primary shadow d-block w-100" type="submit" name="register_submit">Sign Up</button>
                                     </div>
+
+                                    <!-- Display Error  -->
                                     <?php
                                     if ($showError) {
                                         echo '<p class="error-message" style="color: red; font-size: 14px;">' . $showError . '</p>';

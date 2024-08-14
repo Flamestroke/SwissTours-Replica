@@ -1,23 +1,33 @@
 * {
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
 }
 
-.text1 {
-  color: #303030;
-  font-style: normal;
-  font-size: 30px;
+select {
+  background-color: #fff;
 }
-.text1_border {
-  width: 100%;
-  max-width: 130px;
-  display: block;
-  margin: 0 auto;
-  border: 1.5px solid #cc0000;
-  background: #cc0000;
+
+select:hover {
+  background-color: #b30404;
 }
+
+optgroup {
+  background-color: #fff;
+}
+
+option {
+  background-color: #fff;
+  border: #fff;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Navbar */
 .nav-header {
   position: fixed;
   width: 100%;
@@ -29,10 +39,43 @@ a {
   z-index: 10;
   background: #fff;
 }
+
 .nav-item {
   flex-grow: 1;
 }
 
+.navSearch-wrapper {
+  position: relative;
+  width: 18rem;
+  min-height: 2.8rem;
+  z-index: 99;
+}
+
+.navSearch-inner {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #a3a3a3;
+  background-color: white;
+  border-radius: 1.4rem;
+  text-decoration: none;
+  top: 0;
+  left: 0;
+}
+
+.navSearch-inner input {
+  border: 0;
+  background: url(https://img.icons8.com/?size=100&id=132&format=png&color=000000)
+    no-repeat transparent;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-size: auto;
+  padding: 0.75rem 3rem 0.75rem 1.5rem;
+  width: 100%;
+  background-size: 1rem 1rem;
+  background-position: calc(100% - 1rem) center;
+}
+
+/* Index-start */
 .main-content {
   padding-top: 0;
   border-bottom: 0;
@@ -42,22 +85,39 @@ a {
   z-index: 9;
 }
 
-.formrow {
-  position: relative;
-  padding-top: 80px;
-}
-
+/* Carousel */
 .caro {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 400px;
-
   display: block;
   box-sizing: border-box;
   user-select: none;
   touch-action: pan-y;
+}
+
+/* Itinerary Form */
+
+.text1 {
+  color: #303030;
+  font-style: normal;
+  font-size: 30px;
+}
+
+.text1_border {
+  width: 100%;
+  max-width: 130px;
+  display: block;
+  margin: 0 auto;
+  border: 1.5px solid #cc0000;
+  background: #cc0000;
+}
+
+.formrow {
+  position: relative;
+  padding-top: 80px;
 }
 
 .formouter {
@@ -75,6 +135,7 @@ a {
   );
   z-index: -1;
 }
+
 .formouter h2 {
   margin: 0;
   font-style: normal;
@@ -89,39 +150,10 @@ a {
   padding: 20px 0;
 }
 
-select {
-  background-color: #fff;
-}
-select:hover {
-  background-color: #b30404;
-}
-optgroup {
-  background-color: #fff;
-}
-option {
-  background-color: #fff;
-  border: #fff;
-}
-
-input:focus {
-  outline: none;
-}
-
-.input_head {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-width: 0;
-  border: 0;
-  height: 37px;
-  font-size: 15px;
-  font-weight: normal;
-  z-index: 1;
-  margin-bottom: 0;
-}
 .mr_b10 {
   margin-bottom: 10px;
 }
+
 .input {
   position: relative;
   display: flex;
@@ -136,47 +168,31 @@ input:focus {
   font-weight: normal;
   z-index: 1;
 }
+
+.input_head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border: 0;
+  height: 37px;
+  font-size: 15px;
+  font-weight: normal;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
 .inputs {
   border: 0;
   height: 37px;
   font-size: 14px;
   line-height: 16px;
   font-weight: normal;
-  width: 100%;  
+  width: 100%;
 }
 
 .ui-datepicker {
   z-index: 999 !important;
-}
-
-.headerSearch-wrapper {
-  position: relative;
-  width: 18rem;
-  min-height: 2.8rem;
-  z-index: 99;
-}
-
-.headerSearch-inner {
-  position: absolute;
-  width: 100%;
-  border: 1px solid #a3a3a3;
-  background-color: white;
-  border-radius: 1.4rem;
-  text-decoration: none;
-  top: 0;
-  left: 0;
-}
-.headerSearch-inner input {
-  border: 0;
-  background: url(https://www.swisstours.com/images/airline/search-icon.svg)
-    no-repeat transparent;
-  background-position-x: 0%;
-  background-position-y: 0%;
-  background-size: auto;
-  padding: 0.75rem 3rem 0.75rem 1.5rem;
-  width: 100%;
-  background-size: 1rem 1rem;
-  background-position: calc(100% - 1rem) center;
 }
 
 .features {
@@ -202,9 +218,9 @@ input:focus {
   position: relative;
 }
 
+/* Mid-Nav */
 .mid-nav {
-  background: url(https://www.swisstours.com/images/Itinerary/d_texture.png)
-    #566d74;
+  background: #566d74;
   text-align: center;
   margin-bottom: 0;
   display: block;
@@ -228,6 +244,108 @@ input:focus {
   font-size: 20px;
 }
 
+.scrollstick {
+  padding-top: 40px;
+}
+
+.stickytitle {
+  position: fixed;
+  top: 115px;
+  width: 100%;
+  max-height: 85%;
+  z-index: 9;
+  border-bottom: 1px solid #888;
+  box-shadow: 0 0 6px #444;
+  animation: slide-down 0.3s;
+}
+
+/* Benefits */
+.itinerary_package_grid-item {
+  padding: 0px 7px;
+  margin-bottom: 14px;
+}
+
+.itinerary_package_grid-item .itinerary_grid-item-box {
+  display: flex;
+  align-items: flex-end;
+}
+.package_grid_item-1 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(../img/scenery/image1.jpg);
+}
+.package_grid_item-2 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(../img/scenery/image4.jpg);
+}
+.package_grid_item-3 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(../img/scenery/image5.jpg);
+}
+.package_grid_item-4 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(../img/scenery/image6.jpg);
+}
+.package_grid_item-5 a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
+    url(https://www.swisstours.com/images/Itinerary/excursion-bg.png);
+}
+.itinerary_package_grid-item a {
+  display: block;
+  min-height: 355px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 0 10px;
+}
+
+.itinerary_pacakge_grid-item-info {
+  padding-bottom: 20px;
+  padding-left: 10px;
+}
+
+.itinerary_package_grid_item-title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+.itinerary_package_grid_item-subtitle {
+  color: #fff;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  max-width: 550px;
+}
+
+/* FAQ */
+.faq {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  padding-bottom: 50px;
+}
+
+.accordButton {
+  min-height: 40px;
+  font-size: 16px;
+  padding: 7px 7px 7px 60px;
+  position: relative;
+  cursor: pointer;
+}
+
+.accordAnswer {
+  padding: 0 15px 0 60px;
+  line-height: 24px;
+  float: left;
+  width: 100%;
+}
+
+/* Footer */
 .footerDark {
   background-color: #222222;
   margin-top: 9.375rem;
@@ -238,6 +356,10 @@ footer .lower .bot .footerDark-cr {
   display: flex;
   justify-content: center;
   color: rgba(255 255 255 / 50%);
+}
+
+.lower {
+  border-top: 1px solid #dedede;
 }
 
 .upper {
@@ -280,10 +402,6 @@ footer .lower .bot .footerDark-cr {
   padding-bottom: 0px;
   margin-bottom: 0.5rem;
   margin-right: 0px;
-}
-
-.lower {
-  border-top: 1px solid #dedede;
 }
 
 .mid {
@@ -359,101 +477,5 @@ footer .lower .bot .footerDark-cr {
   border-right: 1px solid #d9d9d9;
 }
 
-.scrollstick {
-  padding-top: 40px;
-}
 
-.stickytitle {
-  position: fixed;
-  top: 115px;
-  width: 100%;
-  max-height: 85%;
-  z-index: 9;
-  border-bottom: 1px solid #888;
-  box-shadow: 0 0 6px #444;
-  animation: slide-down 0.3s;
-}
 
-.itinerary_package_grid-item {
-  padding: 0px 7px;
-  margin-bottom: 14px;
-}
-
-.itinerary_package_grid-item .itinerary_grid-item-box {
-  display: flex;
-  align-items: flex-end;
-}
-.package_grid_item-1 a {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
-    url(../img/scenery/image1.jpg);
-}
-.package_grid_item-2 a {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
-    url(../img/scenery/image4.jpg);
-}
-.package_grid_item-3 a {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
-    url(../img/scenery/image5.jpg);
-}
-.package_grid_item-4 a {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
-    url(../img/scenery/image6.jpg);
-}
-.package_grid_item-5 a {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, #000000 100%),
-    url(https://www.swisstours.com/images/Itinerary/excursion-bg.png);
-}
-.itinerary_package_grid-item a {
-  display: block;
-  min-height: 355px;
-  width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  padding: 0 10px;
-}
-
-.itinerary_pacakge_grid-item-info {
-  padding-bottom: 20px;
-  padding-left: 10px;
-}
-
-.itinerary_package_grid_item-title {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 21px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #fff;
-}
-
-.itinerary_package_grid_item-subtitle {
-  color: #fff;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 16px;
-  max-width: 550px;
-}
-
-.faq {
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 28px;
-  padding-bottom: 50px;
-}
-
-.accordButton {
-  min-height: 40px;
-  font-size: 16px;
-  padding: 7px 7px 7px 60px;
-  position: relative;
-  cursor: pointer;
-}
-
-.accordAnswer {
-  padding: 0 15px 0 60px;
-  line-height: 24px;
-  float: left;
-  width: 100%;
-}

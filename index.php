@@ -8,7 +8,8 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Brand</title>
+    <title>Home</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/swisslogo.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
@@ -22,9 +23,8 @@ session_start();
 </head>
 
 <body>
-    <?php
-    require 'components/_nav.php'
-    ?>
+    <!-- Header -->
+    <?php require 'components/_nav.php'?>
 
     <div class="main-content" id="itinerary_search">
         <div class="container-fluid" style="position: relative; padding-top: 110px; z-index: 9;">
@@ -52,6 +52,7 @@ session_start();
                                 </div>
                             </div>
                         </div>
+                        <!-- Itinerary Form -->
                         <div class="formrow container-fluid maxwidth">
                             <div class="formouter mlr container-fluid" style="z-index: 99;">
                                 <div>
@@ -59,6 +60,7 @@ session_start();
                                     <span class="text1_border"></span>
                                     <div class="form">
                                         <div class="row" style="margin:auto;">
+                                            <!-- Check-In -->
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                                 <div class="input" data-date="" data-date-format="dd MM yyyy">
                                                     <span style="background: #fff;border: none;opacity:1">
@@ -67,6 +69,7 @@ session_start();
                                                     <input class="inputs" type="text" id="start_date" placeholder="Check In" aria-describedby="check-in" readonly="" />
                                                 </div>
                                             </div>
+                                            <!-- Check-Out -->
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                                 <div class="input">
                                                     <span style="background: #fff;border: none;opacity:1">
@@ -76,7 +79,7 @@ session_start();
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!-- Nearest City -->
                                         <div class="row" style="margin:auto;">
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                                 <p class="w-100 input_head">Nearest City</p>
@@ -98,6 +101,7 @@ session_start();
                                                     </select>
                                                 </div>
                                             </div>
+                                            <!-- Duration -->
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                                 <p class="w-100 input_head">Duration</p>
                                                 <div class="input mr_b10">
@@ -108,7 +112,7 @@ session_start();
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!-- No of Adults -->
                                         <div class="row" style="margin:auto;">
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                                 <p class="w-100 input_head">Occupancy</p>
@@ -131,6 +135,7 @@ session_start();
                                                     </select>
                                                 </div>
                                             </div>
+                                            <!-- No of Children -->
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                                 <p class="w-100 input_head"></p>
                                                 <div class="input mr_b10">
@@ -165,6 +170,8 @@ session_start();
                             </div>
                         </div>
                     </section>
+
+                    <!-- Features -->
                     <section class="features">
                         <div class="container">
                             <div class="row justify-content-center">
@@ -200,12 +207,8 @@ session_start();
         </div>
     </div>
 
-
-    <!-- Features -->
-
-
-    <div id="sticky-anchor"></div>
     <!-- Mid-Nav -->
+    <div id="sticky-anchor"></div>
     <section class="scrollstick">
         <div class="row mid-nav">
             <ul class="nav mid-nav">
@@ -216,16 +219,14 @@ session_start();
                     <a href="#benefits">Benefits</a>
                 </li>
                 <li>
-                    <a href="#why_us">Why Us?</a>
-                </li>
-                <li>
                     <a href="#FAQ">F.A.Q's</a>
                 </li>
             </ul>
         </div>
     </section>
-    <div id="benefits"></div>
 
+    <!-- Benefits -->
+    <div id="benefits"></div>
     <section class="clean-block about-us">
         <div class="container">
             <div class="block-heading">
@@ -233,15 +234,6 @@ session_start();
                 <span class="text1_border"></span>
             </div>
             <div class="row justify-content-center">
-                <!-- <div class="col-sm-6 col-lg">
-                        <div class="card text-center clean-card">
-                            <img class="card-img-top w-100 d-block" src="assets/img/avatars/avatar1.jpg">
-                            <div class="card-body info">
-                                <h4 class="card-title">John Smith</h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                    </div> -->
                 <div class="col-lg-6 col-md-6 col-sm-12 itinerary_package_grid-item package_grid_item-1">
                     <a href="#" class="itinerary_grid-item-box" style="cursor: unset;">
                         <div class="itinerary_pacakge_grid-item-info">
@@ -292,33 +284,9 @@ session_start();
         </div>
     </section>
 
-    <!-- <div id="itinerary_benefits" class="itinerary_package_section container-fluid">
-            <div class="itinerary_package_section-wrapper maxwidth">
-                <h1 class="itinerary_package_section-title text-center">Complete Switzerland Package</h1>
-                <span class="section_border"></span>
-                <div class="itinerary_package_grid-wrapper mlr">
-                    <div class="col-lg-4 col-md-4 col-sm-12 itinerary_package_grid-item package_grid_item-1">
-                        <a href="#" class="itinerary_grid-item-box" style="cursor: unset;">
-                            <div class="itinerary_pacakge_grid-item-info">
-                                <h3 class="itinerary_package_grid_item-title">Swiss travel pass</h3>
-                                <p class="itinerary_package_grid_item-subtitle">Access to unlimited travel across Switzerland by train, bus, and boat - whether you vacation for 3, 4, 8 or 15 days.</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
-
-
-
-
-
-
+    <!-- FAQS -->
     <section id="FAQ">
         <div class="container">
-            <br />
             <div class="faq" style="text-align: center;">FAQs on A.I. Swiss Itinerary</div>
             <div class="quest">
                 <div class="accordion w-100" id="basicAccordion">
@@ -338,18 +306,16 @@ session_start();
                     </div>
                 </div>
             </div>
-
-            <br />
         </div>
     </section>
 
-    <?php
-    require 'components/_footer.php'
-    ?>
+    <!-- Footer -->
+    <?php require 'components/_footer.php'?>
 
 
 
-
+    <!-- Scripts -->
+    <!-- Sticky-Anchor Script -->
     <script type="text/javascript">
         function sticky_relocate() {
             var window_top = $(window).scrollTop();
@@ -366,22 +332,7 @@ session_start();
         });
     </script>
 
-    <!-- <script>
-        $(function() {
-            $("#checkin").datepicker({
-                dateFormat: 'dd-mm-yy',
-                minDate: 0  
-            });
-        });
-    </script>
-    <script>
-        $(function() {
-            $("#checkout").datepicker({
-                dateFormat: 'dd-mm-yy',
-            });
-        });
-    </script> -->
-
+    <!-- Date-Picker Script -->
     <script>
         $(function() {
             var currentDate = new Date();

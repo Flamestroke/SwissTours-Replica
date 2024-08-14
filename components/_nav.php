@@ -11,8 +11,8 @@ session_start();
                     <a class="navbar-brand logo" href="index.php"><img src="https://www.swisstours.com/images/logo.svg" alt=""></a>
                     <div>
                         <!-- <form action="/action_page.php"> -->
-                        <div class="headerSearch-wrapper me-4">
-                            <div class="headerSearch-inner">
+                        <div class="navSearch-wrapper me-4">
+                            <div class="navSearch-inner">
                                 <input type="text" placeholder="Search.." name="search">
                             </div>
                         </div>
