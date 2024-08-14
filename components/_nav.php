@@ -1,4 +1,7 @@
-<?php ?>
+<?php
+session_start();
+
+?>
 
 <header class="nav-header">
     <div class="container">
@@ -27,8 +30,18 @@
                         <li class="nav-item"><a class="nav-link" href="pricing.php">Attractions</a></li>
                         <li class="nav-item"><a class="nav-link" href="about-us.php">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="pricing.php">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about-us.php">Blog</a></li>  
-                        <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about-us.php">Blog</a></li>
+                        <?php
+                        if (isset($_SESSION['userId']) && $_SESSION['userId'] == true) {
+                            echo '<li class="nav-item"><a class="nav-link" href="logout.php">
+                            <button class="btn btn-primary shadow d-block w-100" type="submit">Log out</button>
+                            </a></li>';
+                        } else {
+                            echo '<li class="nav-item"><a class="nav-link" href="login.php">
+                            <button class="btn btn-primary shadow d-block w-100" type="submit">Log in</button>
+                            </a></li>';
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>

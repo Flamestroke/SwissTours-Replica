@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -222,7 +226,7 @@
     </section>
     <div id="benefits"></div>
 
-    <section class="clean-block about-us" >
+    <section class="clean-block about-us">
         <div class="container">
             <div class="block-heading">
                 <h2 class="text1">Complete Switzerland Package</h2>

@@ -2,33 +2,40 @@
 $login = false;
 $showError = false;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['login_submit'])) {
     include 'components/_dbconnect.php';
-
+    $username = $_POST["uname"];
     $password = $_POST["password"];
-    $email = $_POST["uname"];
 
-    // Prepared statement 
-    $stmt = $conn->prepare("SELECT * FROM User WHERE Stud_email=? AND Password=?");
-    $stmt->bind_param("ss", $email, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $num = mysqli_num_rows($result);
-
-    if ($num == 1) {
-        $login = true;
-        session_start();
-        $_SESSION['loggedin'] = true;
-        $_SESSION['email'] = $email;
-        header("location: student_portal.php");
+    if (empty($username)) {
+        $showError = "Empty Field!!";
     } else {
-        $showError = "Invalid credentials";
+        $sql = ("SELECT * FROM users WHERE username=?");
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            $showError = "Something went Wrong!! ";
+        } else {
+            mysqli_stmt_bind_param($stmt, "s", $username);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if ($row = mysqli_fetch_assoc($result)) {
+                $pwdCheck = password_verify($password, $row['pass_hash']);
+                if ($pwdCheck == false) {
+                    $showError = "Password Incorrect!! 1". $pwdCheck;
+                } else if ($pwdCheck == true) {
+                    session_start();
+                    $_SESSION['userId'] = $row['uid'];
+                    $_SESSION['username'] = $row['username'];
+                    header("location: index.php");
+                    exit();
+                } else {
+                    $showError = "Password Incorrect!!";
+                }
+            } else {
+                $showError = "User doesn't Exists!!";
+            }
+        }
     }
-
-    // Closing prepared statement
-    $stmt->close();
-    // Closing database connection
-    $conn->close();
 }
 ?>
 
@@ -72,9 +79,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </form>
                         </div>
                     </section> -->
-                    <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-center align-items-md-center justify-content-lg-center justify-content-xl-center mt-5">
+                    <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-center align-items-md-center justify-content-lg-center justify-content-xl-center mt-5 mx-auto">
                         <div class="card d-sm-flex flex-grow-1">
-                            <div class="card-body text-center d-flex flex-column align-items-center" style="border-radius: 10px;border-top: 4px solid rgb(204, 0, 0);">
+                            <div class="card-body text-center d-flex flex-column align-items-center" style="border-radius: 10px;border-top: 4px solid rgb(204, 0, 0);border-bottom: 4px solid rgb(204, 0, 0);">
                                 <div style="max-width: 450px;height: 30.6px; color:rgb(204, 0, 0);">
                                     <p class="fw-bold" style="max-width: 450px; font-size: 30px;">Login</p>
                                 </div>
@@ -82,26 +89,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <form method="post">
                                     <div class="mb-3">
-                                        <p class="text-start px-1" style="margin-bottom: 6px;">Email</p>
+                                        <p class="text-start px-1" style="margin-bottom: 6px;">Username</p>
                                         <input class="form-control" type="username" name="uname" id="uname" placeholder="Username" autocomplete="off">
                                     </div>
                                     <div class="mb-3">
                                         <p class="text-start px-1" style="margin-bottom: 6px;">Password</p><input class="form-control" type="password" name="password" id="password" placeholder="Password">
                                     </div>
+                                    <div class="mb-3">
+                                        <button class="btn btn-primary shadow d-block w-100" type="submit" name="login_submit">Log in</button>
+                                    </div>
 
                                     <?php
-
                                     if ($showError) {
-                                        echo '<p class="error-message" style="color: red; font-size: 14px;"> Invalid credentials, Please try again</p>';
+                                        echo '<p class="error-message" style="color: red; font-size: 14px;">' . $showError . '</p>';
                                     }
                                     ?>
-                                    <div class="mb-3">
-                                        <button class="btn btn-primary shadow d-block w-100" type="submit">Log in</button>
-                                    </div>
                                 </form>
 
                                 <a class="login-form-linlk" data-bs-target="#modal" data-bs-toggle="modal">Forgot your Password?<br><br></a>
-                                <p class="text-muted">Don't have an account?&nbsp;<a href="signup_otp.php">Sign up</a></p>
+                                <p class="text-muted">Don't have an account?&nbsp;<a href="register.php">Sign up</a></p>
                                 <div class="modal fade" role="dialog" tabindex="-1" id="modal">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
