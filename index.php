@@ -1,5 +1,44 @@
 <?php
 session_start();
+
+// Logic
+
+$showError = false;
+
+if (isset($_POST['check_availability'])) {
+    include 'components/_dbconnect.php';
+    $city = $_POST["nearest_city"];
+
+    $sql = "SELECT * FROM destination WHERE `name`=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $city);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($data = mysqli_fetch_assoc($result)) {
+        $did = $data['did'];
+    }
+
+    $start_date = $_POST["start_date"];
+
+
+    $sql = "SELECT * FROM itineraries WHERE `start_date`> ? AND destination_id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $start_date, $did);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $num = mysqli_num_rows($result);
+
+    if ($num == 1) {
+        $_SESSION['did'] = $did;
+        $showError = false;
+        header("location: iti.php");
+    } else {
+        $showError = "Invalid credentials";
+    }
+
+    $stmt->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +63,7 @@ session_start();
 
 <body>
     <!-- Header -->
-    <?php require 'components/_nav.php'?>
+    <?php require 'components/_nav.php' ?>
 
     <div class="main-content" id="itinerary_search">
         <div class="container-fluid" style="position: relative; padding-top: 110px; z-index: 9;">
@@ -53,122 +92,124 @@ session_start();
                             </div>
                         </div>
                         <!-- Itinerary Form -->
-                        <div class="formrow container-fluid maxwidth">
-                            <div class="formouter mlr container-fluid" style="z-index: 99;">
-                                <div>
-                                    <h2>Fully Automated Swiss Itinerary</h2>
-                                    <span class="text1_border"></span>
-                                    <div class="form">
-                                        <div class="row" style="margin:auto;">
-                                            <!-- Check-In -->
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                <div class="input" data-date="" data-date-format="dd MM yyyy">
-                                                    <span style="background: #fff;border: none;opacity:1">
-                                                        <img src="https://www.swisstours.com/images/Itinerary/calender-ico.svg" alt="Calendar" />
-                                                    </span>
-                                                    <input class="inputs" type="text" id="start_date" placeholder="Check In" aria-describedby="check-in" readonly="" />
+                        <form method="post">
+                            <div class="formrow container-fluid maxwidth">
+                                <div class="formouter mlr container-fluid" style="z-index: 99;">
+                                    <div>
+                                        <h2>Fully Automated Swiss Itinerary</h2>
+                                        <span class="text1_border"></span>
+                                        <div class="form">
+                                            <div class="row" style="margin:auto;">
+                                                <!-- Check-In -->
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="input" data-date="" data-date-format="dd MM yyyy">
+                                                        <span style="background: #fff;border: none;opacity:1">
+                                                            <img src="https://www.swisstours.com/images/Itinerary/calender-ico.svg" alt="Calendar" />
+                                                        </span>
+                                                        <input class="inputs" type="text" id="start_date" name="start_date" placeholder="Check In" aria-describedby="check-in" readonly="" />
+                                                    </div>
+                                                </div>
+                                                <!-- Check-Out -->
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="input">
+                                                        <span style="background: #fff;border: none;opacity:1">
+                                                            <img src="https://www.swisstours.com/images/Itinerary/calender-ico.svg" alt="Calendar" />
+                                                        </span>
+                                                        <input class="inputs" type="text" id="end_date" name="end_date" placeholder="Check Out" aria-describedby="check-out" readonly="" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- Check-Out -->
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                <div class="input">
-                                                    <span style="background: #fff;border: none;opacity:1">
-                                                        <img src="https://www.swisstours.com/images/Itinerary/calender-ico.svg" alt="Calendar" />
-                                                    </span>
-                                                    <input class="inputs" type="text" id="end_date" placeholder="Check Out" aria-describedby="check-out" readonly="" />
+                                            <!-- Nearest City -->
+                                            <div class="row" style="margin:auto;">
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <p class="w-100 input_head">Nearest City</p>
+                                                    <div class="input mr_b10">
+                                                        <span style="background: #fff;border: none;opacity:1">
+                                                            <img src="https://www.swisstours.com/images/Itinerary/location-ico.svg" alt="Calendar" />
+                                                        </span>
+                                                        <select class="input" name="nearest_city" id="nearest_city">
+                                                            <optgroup label="Select Nearest City">
+                                                                <option value="NearestCity" selected="">Nearest City</option>
+                                                                <option value="Ahmedabad">Ahmedabad</option>
+                                                                <option value="Bangalore">Bangalore</option>
+                                                                <option value="Chennai">Chennai</option>
+                                                                <option value="Delhi&amp;Gurgaon">Delhi&amp;Gurgaon</option>
+                                                                <option value="Kolkata">Kolkata</option>
+                                                                <option value="Mumbai">Mumbai</option>
+                                                                <option value="Pune">Pune</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- Duration -->
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <p class="w-100 input_head">Duration</p>
+                                                    <div class="input mr_b10">
+                                                        <span style="background: #fff;border: none;opacity:1">
+                                                            <img style="margin: auto;" src="https://www.swisstours.com/images/Itinerary/nights-ico.svg" alt="Calendar" />
+                                                        </span>
+                                                        <input class="input" type="text" name="Duration" id="Duration" placeholder="Nights" readonly="">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- Nearest City -->
-                                        <div class="row" style="margin:auto;">
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                <p class="w-100 input_head">Nearest City</p>
-                                                <div class="input mr_b10">
-                                                    <span style="background: #fff;border: none;opacity:1">
-                                                        <img src="https://www.swisstours.com/images/Itinerary/location-ico.svg" alt="Calendar" />
-                                                    </span>
-                                                    <select class="input" name="nearest_city" id="nearest_city">
-                                                        <optgroup label="Select Nearest City">
-                                                            <option value="NearestCity" selected="">Nearest City</option>
-                                                            <option value="Ahmedabad">Ahmedabad</option>
-                                                            <option value="Bangalore">Bangalore</option>
-                                                            <option value="Chennai">Chennai</option>
-                                                            <option value="Delhi&amp;Gurgaon">Delhi&amp;Gurgaon</option>
-                                                            <option value="Kolkata">Kolkata</option>
-                                                            <option value="Mumbai">Mumbai</option>
-                                                            <option value="Pune">Pune</option>
-                                                        </optgroup>
-                                                    </select>
+                                            <!-- No of Adults -->
+                                            <div class="row" style="margin:auto;">
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <p class="w-100 input_head">Occupancy</p>
+                                                    <div class="input mr_b10">
+                                                        <span style="background: #fff;border: none;opacity:1">
+                                                            <img src="https://www.swisstours.com/images/Itinerary/adults-ico.svg" alt="Calendar" />
+                                                        </span>
+                                                        <select class="input" name="nearest_city" id="nearest_city">
+                                                            <optgroup label="Select Number of Adults">
+                                                                <option value="1">1 Adult</option>
+                                                                <option value="2" selected="">2 Adults</option>
+                                                                <option value="3">3 Adults</option>
+                                                                <option value="4">4 Adults</option>
+                                                                <option value="5">5 Adults</option>
+                                                                <option value="6">6 Adults</option>
+                                                                <option value="7">7 Adults</option>
+                                                                <option value="8">8 Adults</option>
+                                                                <option value="9">9 Adults</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- No of Children -->
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <p class="w-100 input_head"></p>
+                                                    <div class="input mr_b10">
+                                                        <span style="background: #fff;border: none;opacity:1">
+                                                            <img src="https://www.swisstours.com/images/Itinerary/child-ico.svg" alt="Calendar" />
+                                                        </span>
+                                                        <select class="input" name="nearest_city" id="nearest_city">
+                                                            <optgroup label="Select Number of Children">
+                                                                <option value="0" selected="">0 Child</option>
+                                                                <option value="1">1 Child</option>
+                                                                <option value="2">2 Children</option>
+                                                                <option value="3">3 Children</option>
+                                                                <option value="4">4 Children</option>
+                                                                <option value="5">5 Children</option>
+                                                                <option value="6">6 Children</option>
+                                                                <option value="7">7 Children</option>
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- Duration -->
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                <p class="w-100 input_head">Duration</p>
-                                                <div class="input mr_b10">
-                                                    <span style="background: #fff;border: none;opacity:1">
-                                                        <img style="margin: auto;" src="https://www.swisstours.com/images/Itinerary/nights-ico.svg" alt="Calendar" />
-                                                    </span>
-                                                    <input class="input" type="text" name="Duration" id="Duration" placeholder="Nights" readonly="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- No of Adults -->
-                                        <div class="row" style="margin:auto;">
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                <p class="w-100 input_head">Occupancy</p>
-                                                <div class="input mr_b10">
-                                                    <span style="background: #fff;border: none;opacity:1">
-                                                        <img src="https://www.swisstours.com/images/Itinerary/adults-ico.svg" alt="Calendar" />
-                                                    </span>
-                                                    <select class="input" name="nearest_city" id="nearest_city">
-                                                        <optgroup label="Select Number of Adults">
-                                                            <option value="1">1 Adult</option>
-                                                            <option value="2" selected="">2 Adults</option>
-                                                            <option value="3">3 Adults</option>
-                                                            <option value="4">4 Adults</option>
-                                                            <option value="5">5 Adults</option>
-                                                            <option value="6">6 Adults</option>
-                                                            <option value="7">7 Adults</option>
-                                                            <option value="8">8 Adults</option>
-                                                            <option value="9">9 Adults</option>
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- No of Children -->
-                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                                <p class="w-100 input_head"></p>
-                                                <div class="input mr_b10">
-                                                    <span style="background: #fff;border: none;opacity:1">
-                                                        <img src="https://www.swisstours.com/images/Itinerary/child-ico.svg" alt="Calendar" />
-                                                    </span>
-                                                    <select class="input" name="nearest_city" id="nearest_city">
-                                                        <optgroup label="Select Number of Children">
-                                                            <option value="0" selected="">0 Child</option>
-                                                            <option value="1">1 Child</option>
-                                                            <option value="2">2 Children</option>
-                                                            <option value="3">3 Children</option>
-                                                            <option value="4">4 Children</option>
-                                                            <option value="5">5 Children</option>
-                                                            <option value="6">6 Children</option>
-                                                            <option value="7">7 Children</option>
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="row" style="margin:auto;">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                <div class="input">
-                                                    <button class="btn btn-primary shadow d-block w-100" type="date" placeholder="Check In" aria-describedby="check-in" readonly="">Check Availability</button>
+                                            <div class="row" style="margin:auto;">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div class="input">
+                                                        <button class="btn btn-primary shadow d-block w-100" type="date" name="check_availability" id="check_availability" aria-describedby="check-in" readonly="">Check Availability</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </section>
 
                     <!-- Features -->
@@ -310,7 +351,7 @@ session_start();
     </section>
 
     <!-- Footer -->
-    <?php require 'components/_footer.php'?>
+    <?php require 'components/_footer.php' ?>
 
 
 
@@ -380,6 +421,29 @@ session_start();
     <script src="assets/js/baguetteBox.min.js"></script>
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
+
+<!-- DELETE -->
+    <script>
+        function hehe() {
+            // var email = jQuery('#refid').val();
+            var pls = <?php echo $sql; ?>;
+            // console.log(email);
+            console.log(pls);
+
+            // jQuery.ajax({
+            //     success: function(result) {
+            //         if (result == 'yes') {
+            //             console.log(email);
+            //             console.log("mailsent");
+            //         }
+            //         if (result == 'not_exist') {
+            //             console.log(email);
+            //             console.log("mailNOTsent");
+            //         }
+            //     }
+            // });
+        }
+    </script>
 </body>
 
 </html>
