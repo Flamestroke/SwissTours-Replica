@@ -7,7 +7,7 @@ $showError = false;
 
 if (isset($_POST['check_availability'])) {
     include 'components/_dbconnect.php';
-    $city = $_POST["nearest_city"];
+    $city = $_POST["shitty"];
 
     $sql = "SELECT * FROM destination WHERE `name`=?";
     $stmt = $conn->prepare($sql);
@@ -19,10 +19,13 @@ if (isset($_POST['check_availability'])) {
         $did = $data['did'];
     }
 
-    $start_date = $_POST["start_date"];
+    $day1 = strtotime($_POST["start_date"]);
+    $start_date = date('m-d-Y', $day1);
+    // echo $start_date;
+    // $start_date = $_POST["start_date"];
 
 
-    $sql = "SELECT * FROM itineraries WHERE `start_date`> ? AND destination_id=?";
+    $sql = "SELECT * FROM itineraries WHERE `start_date`< ? AND destination_id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $start_date, $did);
     $stmt->execute();
@@ -34,7 +37,7 @@ if (isset($_POST['check_availability'])) {
         $showError = false;
         header("location: iti.php");
     } else {
-        $showError = "Invalid credentials";
+        $showError = "invalid error";
     }
 
     $stmt->close();
@@ -92,12 +95,15 @@ if (isset($_POST['check_availability'])) {
                             </div>
                         </div>
                         <!-- Itinerary Form -->
-                        <form method="post">
-                            <div class="formrow container-fluid maxwidth">
-                                <div class="formouter mlr container-fluid" style="z-index: 99;">
-                                    <div>
-                                        <h2>Fully Automated Swiss Itinerary</h2>
-                                        <span class="text1_border"></span>
+                        <div class="formrow container-fluid maxwidth">
+                            <div class="formouter mlr container-fluid" style="z-index: 99;">
+                                <div>
+                                    <h2>Fully Automated Swiss Itinerary</h2>
+                                    <?php
+                                    echo $city ." ". $start_date ." ". $did;
+                                    ?>
+                                    <span class="text1_border"></span>
+                                    <form method="post" enctype="multipart/form-data">
                                         <div class="form">
                                             <div class="row" style="margin:auto;">
                                                 <!-- Check-In -->
@@ -127,10 +133,10 @@ if (isset($_POST['check_availability'])) {
                                                         <span style="background: #fff;border: none;opacity:1">
                                                             <img src="https://www.swisstours.com/images/Itinerary/location-ico.svg" alt="Calendar" />
                                                         </span>
-                                                        <select class="input" name="nearest_city" id="nearest_city">
+                                                        <select class="input" name="shitty" id="shitty">
                                                             <optgroup label="Select Nearest City">
                                                                 <option value="NearestCity" selected="">Nearest City</option>
-                                                                <option value="Ahmedabad">Ahmedabad</option>
+                                                                <option value="Ahemdabad">Ahmedabad</option>
                                                                 <option value="Bangalore">Bangalore</option>
                                                                 <option value="Chennai">Chennai</option>
                                                                 <option value="Delhi&amp;Gurgaon">Delhi&amp;Gurgaon</option>
@@ -201,51 +207,51 @@ if (isset($_POST['check_availability'])) {
                                             <div class="row" style="margin:auto;">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                     <div class="input">
-                                                        <button class="btn btn-primary shadow d-block w-100" type="date" name="check_availability" id="check_availability" aria-describedby="check-in" readonly="">Check Availability</button>
+                                                        <button class="btn btn-primary shadow d-block w-100" type="submit" name="check_availability" id="check_availability" readonly="">Check Availability</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </section>
-
-                    <!-- Features -->
-                    <section class="features">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-md-5 feature-box">
-                                    <div class="features">
-                                        <i class="fas fa-sack-dollar" style="font-size: 30px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
-                                        <p> Live Dynamic Pricing </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 feature-box">
-                                    <div class="features">
-                                        <i class="fas fa-credit-card" style="font-size:30px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
-                                        <p>Contactless Booking</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 feature-box">
-                                    <div class="features">
-                                        <i class="fas fa-circle-info" style="font-size:30px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
-                                        <p>In-Depth Itinerary Information</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 feature-box">
-                                    <div class="features">
-                                        <i class="fas fa-ticket" style="font-size:30px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
-                                        <p>Instant e-Voucher</p>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </section>
                 </div>
+                </section>
+
+                <!-- Features -->
+                <section class="features">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 feature-box">
+                                <div class="features">
+                                    <i class="fas fa-sack-dollar" style="font-size: 30px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+                                    <p> Live Dynamic Pricing </p>
+                                </div>
+                            </div>
+                            <div class="col-md-5 feature-box">
+                                <div class="features">
+                                    <i class="fas fa-credit-card" style="font-size:30px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+                                    <p>Contactless Booking</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5 feature-box">
+                                <div class="features">
+                                    <i class="fas fa-circle-info" style="font-size:30px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+                                    <p>In-Depth Itinerary Information</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5 feature-box">
+                                <div class="features">
+                                    <i class="fas fa-ticket" style="font-size:30px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+                                    <p>Instant e-Voucher</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Mid-Nav -->
@@ -422,7 +428,7 @@ if (isset($_POST['check_availability'])) {
     <script src="assets/js/vanilla-zoom.js"></script>
     <script src="assets/js/theme.js"></script>
 
-<!-- DELETE -->
+    <!-- DELETE -->
     <script>
         function hehe() {
             // var email = jQuery('#refid').val();
