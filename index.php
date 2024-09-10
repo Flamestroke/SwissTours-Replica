@@ -25,19 +25,21 @@ if (isset($_POST['check_availability'])) {
     // $start_date = $_POST["start_date"];
 
 
-    $sql = "SELECT * FROM itineraries WHERE `start_date`< ? AND destination_id=?";
+    $sql = "SELECT * FROM itineraries WHERE destination_id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $start_date, $did);
+    $stmt->bind_param("s", $did);
     $stmt->execute();
     $result = $stmt->get_result();
     $num = mysqli_num_rows($result);
 
     if ($num == 1) {
         $_SESSION['did'] = $did;
-        $showError = false;
+        $showError = $city . " " . $start_date . " " . $did;
         header("location: iti.php");
     } else {
-        $showError = "invalid error";
+        $showError = "invalid error" . $start_date . " " . $did;
+        // header("location: iti.php");
+
     }
 
     $stmt->close();
@@ -100,7 +102,7 @@ if (isset($_POST['check_availability'])) {
                                 <div>
                                     <h2>Fully Automated Swiss Itinerary</h2>
                                     <?php
-                                    echo $city ." ". $start_date ." ". $did;
+                                    echo $showError;
                                     ?>
                                     <span class="text1_border"></span>
                                     <form method="post" enctype="multipart/form-data">
